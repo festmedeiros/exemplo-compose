@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: cont-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  cont-node:
+    image: img-node
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cont-backend
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: testdb
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
