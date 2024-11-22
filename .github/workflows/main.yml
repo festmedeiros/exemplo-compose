@@ -111,10 +111,10 @@ jobs:
 
       - name: Criar imagem docker
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/seu-repositorio:${{ env.VERSION }} .
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/seu-repositorio:${{ env.VERSION }} ${{ secrets.DOCKERHUB_USERNAME }}/seu-repositorio:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/DOCKERHUB_REPO:${{ env.VERSION }} .
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/DOCKERHUB_REPO:${{ env.VERSION }} ${{ secrets.DOCKERHUB_USERNAME }}/DOCKERHUB_REPO:latest
 
       - name: Efetuar push da imagem
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/seu-repositorio:${{ env.VERSION }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/seu-repositorio:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/DOCKERHUB_REPO:${{ env.VERSION }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/DOCKERHUB_REPO:latest
